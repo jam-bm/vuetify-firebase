@@ -1,31 +1,67 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    
+    <v-navigation-drawer v-model="sideNav" absolute
+      temporary>
+      <v-list  v-for="item in menuItem" :key="item.title" :to="'/'+item.link">
+        <v-list-tile avatar >
+          <v-list-tile-action>
+            <v-icon>{{item.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            {{item.title}}
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-card
+    color="grey lighten-4"
+    flat
+    tile
+    
+    >
+      <v-toolbar dark class="purple darken-1">
+        <v-app-bar-nav-icon @click.native.stop="sideNav = !sidenav"
+        class="hidden-sm-and-up"></v-app-bar-nav-icon>
+        <v-toolbar-title>
+          <router-link to="/" tag="span" style="cursor: pointer">DevMeetup</router-link>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-xs-only">
+          <v-btn text v-for="item in menuItem" :key="item.title" :to="'/'+item.link">
+            <v-icon>{{item.icon}}</v-icon>
+            {{item.title}}
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+    </v-card>
+    
+    <main>
+      <router-view></router-view>
+    </main>
+  </v-app>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      sideNav: false,
+      menuItem: [
+        {icon: 'supervisor_account', title: 'View Meetup', link: 'meetups'},
+        {icon: '', title: 'Organize Meetup', link: 'meetup/new'},
+        {icon: '', title: 'Profile', link: 'profile'},
+        {icon: '', title: 'Sign Up', link: 'signup'},
+        {icon: '', title: 'Sign In', link: 'signin'},
+      ]
+    }
+  },
+};
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.white--text{
+  user-select: none;
+  text-decoration: none;
 }
 </style>
