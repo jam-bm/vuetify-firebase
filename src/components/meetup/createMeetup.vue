@@ -66,13 +66,11 @@
                     <v-layout row wrap class="mb-2">
                         <v-flex xs12 sm6 offset-sm3>
                             <v-date-picker :landscape="true" :reactive="true" v-model="date"></v-date-picker>
-                            <p>{{date}}</p>
                         </v-flex>
                     </v-layout>
                     <v-layout row wrap>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-time-picker v-model="time" format="24hr"></v-time-picker>
-                            <p>time</p>
                         </v-flex>
                     </v-layout>
                     <v-layout row wrap>
@@ -80,7 +78,6 @@
                             <v-btn color="primary" :disabled="!formIsValid"
                             type="submit" 
                             >Create Meetup</v-btn>
-                            {{submittableDateTime}}
                         </v-flex>
                     </v-layout>
                 </form>
@@ -98,7 +95,7 @@ export default {
             imageUrl: '',
             description: '',
             date: new Date(),
-            time: new Date()
+            time: new Time()
         }
     },
     computed: {
