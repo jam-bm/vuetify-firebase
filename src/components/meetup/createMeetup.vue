@@ -65,7 +65,7 @@
                     </v-layout>
                     <v-layout row wrap class="mb-2">
                         <v-flex xs12 sm6 offset-sm3>
-                            <v-date-picker :landscape="true" :reactive="true" v-model="date"></v-date-picker>
+                            <v-date-picker v-model="date"></v-date-picker>
                         </v-flex>
                     </v-layout>
                     <v-layout row wrap>
@@ -94,8 +94,8 @@ export default {
             location: '',
             imageUrl: '',
             description: '',
-            date: new Date(),
-            time: new Time()
+            date: new Date().toISOString().substr(0, 10),
+            time: null
         }
     },
     computed: {
